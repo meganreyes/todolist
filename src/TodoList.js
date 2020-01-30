@@ -42,13 +42,22 @@ function generate(element) {
 export default function TodoList({ todos, deleter }) {
   const classes = useStyles();
   const [dense, setDense] = React.useState(false);
+  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const handleListItemClick = (event, index) => {
+  setSelectedIndex(index);
+  };
   const todoList = todos.length ? (
     todos.map(todo => {
       return (
         <Fragment key={todo.id}>
-          <ListItem>
+          <ListItem
+           button
+           selected={selectedIndex === 2}
+           onClick={event => handleListItemClick(event, 0)}
+          >
           <div className={classes.root}>
                   <List dense={dense}>
+                   <span onClick={() => deleter(todo.id)}>
                       <ListItem>
                         <ListItemAvatar>
                           <Avatar>
@@ -62,6 +71,7 @@ export default function TodoList({ todos, deleter }) {
                           </IconButton>
                           </span>
                       </ListItem>
+                      </span>
                   </List>
           </div>
           </ListItem>
@@ -70,7 +80,7 @@ export default function TodoList({ todos, deleter }) {
       );
     })
   ) : (
-    <p> Nothing left to do! </p>
+    <Typography variant="subtitle1" align="center">It's all ogre now...</Typography>
   );
   return <List style={{marginTop: 20}}>{todoList}</List>;
 }
