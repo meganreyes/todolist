@@ -15,6 +15,14 @@ export default function App() {
 
   function addTodo(todo) {
     setTodos(todos => [...todos, todo]);
+  }
+
+   function submit(e) {
+      e.preventDefault();
+      if (content.trim()) {
+         adder({ id: Math.random(), content });
+      }
+      setContent('');
    }
 
   return (
