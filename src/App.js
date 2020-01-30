@@ -10,14 +10,9 @@ import TodoEntryForm from './TodoEntryForm';
 export default function App() {
 
   const [todos, setTodos] = useState([
-     {id: 1, content: 'Play Pokemon Sword'},
-     {id: 2, content: 'Fuck shit up'},
+     {id: 1, content: 'Eat'},
+     {id: 2, content: 'Get money'},
   ]);
-
-  let content = null;
-  let adder = null;
-  let uuidv4 = null;
-  let setContent = null;
 
   function deleteTodo(id) {
     setTodos(todos => todos.filter(todo => todo.id !== id));
@@ -27,21 +22,14 @@ export default function App() {
     setTodos(todos => [...todos, todo]);
   }
 
-  function submit(e) {
-    e.preventDefault();
-      if (content.trim()) {
-         adder({ id: uuidv4(), content });
-      }
-    setContent('');
-   }
 
-  return (
-     <Container maxWidth="sm" style={{marginTop: 20}}>
+   return (
+    <Container maxWidth="sm" style={{marginTop: 20}}>
       <Paper style={{padding: 20, backgroundColor: '#fffff3'}}>
-        <Typography variant="h3" align="center">Things To Do</Typography>
+        <Typography variant="h3"  align="center">Things To Do</Typography>
         <TodoList todos={todos} deleter={deleteTodo}/>
         <TodoEntryForm adder={addTodo} />
       </Paper>
     </Container>
- );
+  );
 }
