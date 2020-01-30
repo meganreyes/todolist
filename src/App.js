@@ -20,7 +20,7 @@ export default function App() {
    function submit(e) {
       e.preventDefault();
       if (content.trim()) {
-         adder({ id: Math.random(), content });
+         adder({ id: uuidv4(), content });
       }
       setContent('');
    }
