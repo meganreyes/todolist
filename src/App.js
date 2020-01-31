@@ -5,7 +5,9 @@ import Typography from '@material-ui/core/Typography';
 import Checkbox from '@material-ui/core/Checkbox';
 import TodoList from './TodoList';
 import TodoEntryForm from './TodoEntryForm';
+import { createMuiTheme} from '@material-ui/core/styles';
 
+let theme = createMuiTheme();
 
 export default function App() {
 
@@ -13,6 +15,22 @@ export default function App() {
      {id: 1, content: 'Eat'},
      {id: 2, content: 'Get money'},
   ]);
+
+ const theme = createMuiTheme({
+    typography: {
+     subtitle1: {
+     fontSize: 12,
+     fontStyle: 'italic'
+   },
+    body1: {
+      fontWeight: 500,
+    },
+    button: {
+     fontStyle: 'italic',
+    },
+  },
+});
+
 
   function deleteTodo(id) {
     setTodos(todos => todos.filter(todo => todo.id !== id));
@@ -22,10 +40,9 @@ export default function App() {
     setTodos(todos => [...todos, todo]);
   }
 
-
    return (
     <Container maxWidth="sm" style={{marginTop: 20}}>
-      <Paper style={{padding: 20, backgroundColor: '#fffff3'}}>
+      <Paper style={{padding: 20, backgroundColor: '#FFBEDA'}}>
         <Typography variant="h3"  align="center">Things To Do</Typography>
         <TodoList todos={todos} deleter={deleteTodo}/>
         <TodoEntryForm adder={addTodo} />
